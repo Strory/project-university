@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body>
+    <div class="top-bar">
+        <a class="top-bar-link" href="#">www.dvfu.ru</a>
+        <a class="top-bar-link" href="#">ЕДИНЫЙ КОНТАКТНЫЙ ЦЕНТР</a>
+    </div>
+    <header class="header">
+        <div class="header-left-content">
+            Логотип ДВФУ
+        </div>
+        <div class="header-right-content">
+            <button>Главная</button>
+            <button id="my-achievements-btn" class="my-achievements">Мои достижения</button>
+            Всякие менюшки
+        </div>
+        <div id="my-achievements-list" class="achieve-type-list display-none">
+            <li><a href="#">Спортивные достижения</a></li>
+            <li><a href="#">Научные достижения достижения</a></li>
+        </div>
+    </header>
+
+
+    <!-- Главная для студента -->
+    <main id="main-card" class="">
+        <h1>Все достижения</h1>
+        <div class="content">
+            <div class="achievements-toggle-bar">
+                <div id="current-achievements-btn" class="current-achievements active">
+                    Текущие достижения
+                </div>
+                <div id="archived-achievements-btn" class="archived-achievements">
+                    Архивные достижения
+                </div>
+            </div>
+            <div id="current-achievements-bar" class="current-achievements-bar achievements-search-bar">
+                <input placeholder="Название достижения" type="text" class="achieve-title current-achievements-bar-achieve-title">
+                <button class="add-achieve">
+                    Добавить достижение
+                </button>
+                <button class="refresh-button">icon</button>
+            </div>
+            <div id="archived-achievements-bar" class="archived-achievements-bar achievements-search-bar display-none">
+                <input placeholder="Название достижения" type="text" class="achieve-title archived-achievements-bar-achieve-title">
+                <button class="refresh-button">icon</button>
+            </div>
+            <div class="filters display-none">
+                <input type="text" placeholder="Название достижения">
+                <input type="text" placeholder="Фамилия студента">
+                <input type="text" placeholder="Школа">
+                <input type="text" placeholder="Направление обучения">
+                <button></button>
+            </div>
+
+            <div class="table">
+                <table>
+                    <tr>
+                        <th>ID</th>
+                        <th>Название</th>
+                        <th>Тип</th>
+                        <th>Школа</th>
+                        <th>Направление обучения</th>
+                        <th>Статус</th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <td>27554</td>
+                        <td>Всеросийский конкурс молодых препринимателей "Амур 25"</td>
+                        <td>Подтверждённое</td>
+                        <td>Политехнический институт (Школа)</td>
+                        <td>длинной длинное направление обучения</td>
+                        <td>Отправлено на проверку</td>
+                        <td>иконка</td>
+                    </tr>
+                </table>
+                <p id="caption-empty" class="empty-text display-none">Список достижений пуст</p>
+                <p id="caption-load" class="load-text display-none">Загрузка данных</p>
+            </div>
+        </div>
+
+        <div id="modal-overlay" class="">
+            <div class="modal-wrapper">
+                <div id="modal-box">
+                    <h2>Вид достижения </h2>
+                    <button>Спортивная деятельность</button>
+                    <button>Научная деятельность</button>
+                    <button>Творческая деятельность</button>
+                    <button>Общественная деятельность</button>
+                    <button>Учебная деятельность</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Карточка заполнения достижения -->
+    <div id="main-form" class="achievement-completion-card-and-reset-button display-none">
+        <div class="achievement-completion-card">
+            <form class="form">
+                <!-- Элементы формы -->
+                <div id="toggle-form" class="form-element">
+                    <label class="form-title">Тип спортивного достижения</label>
+                    <label class="input-wrap radio-margin">
+                        <input type="radio" name="achieve-type" value="achieve-value"> Знак отличия ВФСК ГТО
+                    </label>
+                    <label class="input-wrap radio-margin">
+                        <input type="radio" name="achieve-type" value="achieve-value"> Победа
+                    </label>
+                    <label class="input-wrap radio-margin">
+                        <input type="radio" name="achieve-type" value="achieve-value"> Поражение
+                    </label>
+                </div>
+
+                <div id="form-container" class="toggle-form">
+                    <div class="form-element">
+                        <label class="form-title">Тип спортивного достижения</label>
+                        <label class="input-wrap">
+                            <input class="input-line-element" type="text" name="achieve-type">
+                        </label>
+                    </div>
+
+                    <div class="form-element">
+                        <label class="form-title">Тип спортивного достижения</label>
+                        <label class="input-wrap">
+                            <input class="input-line-element" type="date" name="achieve-type">
+                        </label>
+                    </div>
+
+                    <div class="form-element">
+                        <label class="form-title">
+                            Тип спортивного достижения
+                            <div class="small-text">
+                                Подтверждающим документом для победы в спортивных мероприятиях является протокол
+                                соревнований, подписанный оргкомитетом или главной судейской коллегией (для победы в
+                                спортивных мероприятиях). Если документов много, используйте PDF. Если подтверждающий
+                                документ написан на иностранном языке, необходимо также приложить заверенный перевод.
+                            </div>
+                        </label>
+                        <label class="input-wrap">
+                            <input class="input-line-element" type="file" name="achieve-type">
+                        </label>
+                        <div class="small-text">
+                            Максимальное число файлов: 1, Максимальный размер одного файла: 10MB, Разрешенные типы файлов:
+                            PDF, Изображение
+                        </div>
+                    </div>
+                    <button class="submit">Отправить</button>
+                </div>
+            </form>
+        </div>
+        <div class="reset-button-wrap">
+            сброс
+        </div>
+    </div>
+
+</body>
+
+</html>
