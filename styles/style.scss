@@ -54,44 +54,111 @@ button {
     align-items: center;
     border-bottom: 2px solid #4a4a4a26;
 
-    .header-right-content {
+    .header-left-content {
 
-        .my-achievements {
-            cursor: pointer;
+        a {
+            display: block;
+
+            img {
+                display: block;
+                width: 150px;
+            }
         }
     }
 
-    .achieve-type-list {
-        position: absolute;
-        top: var(--height);
-        right: 0;
-        list-style: none;
-        padding: 0;
-        background-color: #fff;
-        font-weight: 600;
-        box-shadow: 0 2px 2px 1px #4a4a4a33;
-        font-size: 20px;
+    .header-right-content {
+        height: inherit;
+        display: flex;
+        align-items: center;
 
-        li {
-            height: 50px;
-            line-height: 50px;
+        .main-button,
+        .my-achievements,
+        .check-achievements-button {
+            color: var(--mu-blue-color);
+            font-size: 20px;
+            font-weight: 600;
+        }
 
-            a {
-                display: block;
-                height: inherit;
-                padding-inline: 10px;
-                text-decoration: none;
-                color: var(--mu-blue-color);
+        .main-button,
+        .my-achievements,
+        .fio-button,
+        .out-button,
+        .check-achievements-button {
+            cursor: pointer;
+            height: 30px;
 
-                &:hover {
-                    background-color: var(--mu-grey-color);
+            &:not(:nth-last-child(-n+2)) {
+                margin-right: 30px;
+            }
+        }
+
+        .main-button,
+        .my-achievements,
+        .check-achievements-button {
+            &:hover {
+                color: var(--blue-font-color)
+            }
+        }
+
+        .my-achievements {
+            position: relative;
+
+            .achieve-type-list {
+                position: absolute;
+                top: var(--height);
+                left: 0;
+                top: 53px;
+                list-style: none;
+                padding: 0;
+                background-color: #fff;
+                font-weight: 600;
+                box-shadow: 0 2px 2px 1px #4a4a4a33;
+                font-size: 20px;
+                width: fit-content;
+
+                li {
+                    height: 50px;
+                    line-height: 50px;
+
+                    a {
+                        display: block;
+                        height: inherit;
+                        padding-inline: 10px;
+                        text-decoration: none;
+                        color: var(--mu-blue-color);
+                        white-space: nowrap;
+                        text-align: left;
+
+                        &:hover {
+                            background-color: var(--mu-grey-color);
+                        }
+                    }
                 }
+            }
+        }
+
+        .fio-button {
+            color: #d1d5d6;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .out-button {
+            width: 30px;
+            height: 30px;
+            position: relative;
+            top: -4px;
+
+            img {
+                width: inherit;
+                height: inherit;
+                display: block;
             }
         }
     }
 }
 
-main {
+.main {
     width: 76%;
     margin: 50px auto 20px;
 
@@ -163,15 +230,10 @@ main {
                 box-sizing: content-box;
                 font-weight: 500;
                 cursor: pointer;
-            }
 
-            .refresh-button {
-                border: none;
-                height: 60px;
-                width: 60px;
-                border-radius: 10px;
-                background-color: var(--mu-blue-color);
-                cursor: pointer;
+                &:hover {
+                    background-color: var(--blue-font-color);
+                }
             }
         }
 
@@ -179,6 +241,33 @@ main {
 
             .current-achievements-bar-achieve-title {
                 width: 59%;
+            }
+        }
+
+        .refresh-button {
+            border: none;
+            height: 60px;
+            width: 60px;
+            padding: 0;
+            border-radius: 10px;
+            background-color: var(--mu-blue-color);
+            cursor: pointer;
+            color: #fff;
+
+            &:hover {
+                background-color: var(--blue-font-color);
+            }
+
+            svg {
+                width: 60px;
+                height: 60px;
+            }
+
+            .load-animation {
+                animation-name: load-animation;
+                animation-duration: 3s;
+                animation-timing-function: linear;
+                animation-iteration-count: infinite;
             }
         }
 
@@ -312,6 +401,17 @@ main {
     }
 }
 
+@keyframes load-animation {
+    0% {
+        rotate: 0deg;
+    }
+    50% {
+        rotate: 180deg;
+    }
+    100% {
+        rotate: 360deg;
+    }
+}
 
 .achievement-completion-card-and-reset-button {
     margin-top: 20px;
@@ -361,6 +461,19 @@ main {
                 }
             }
 
+            .textarea-wrap {
+                display: block;
+
+                .textarea-line-element {
+                    width: 100%;
+                    background-color: #f6f6f6;
+                    border: 1px solid #777;
+                    border-radius: 2px;
+                    display: block;
+                    padding: 10px;
+                }
+            }
+
             .radio-margin {
                 &:not(:last-child) {
                     margin-bottom: 10px;
@@ -377,6 +490,11 @@ main {
             height: 45px;
             width: 100%;
             padding: 10px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: var(--blue-font-color);
+            }
         }
     }
 
@@ -385,5 +503,114 @@ main {
         width: 50px;
         height: 50px;
         background-color: var(--mu-blue-color);
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+
+        &:hover {
+            background-color: var(--blue-font-color);
+        }
+
+        img {
+            width: 40px;
+            height: 40px;
+            display: block;
+        }
     }
+}
+
+.verificator-main {
+
+    .school-filter-wrap {
+        width: 59%;
+
+        .school-input-verificator {
+            outline: none;
+            border: none;
+            display: block;
+            width: calc(100% - 20px);
+            height: 20px;
+            padding: 10px;
+            border-radius: 10px;
+            color: #0d0d0d;
+            background-color: var(--mu-grey-color);
+            box-sizing: content-box;
+            text-align: center;
+        }
+
+        .delimeter-arrow {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 10px;
+            margin-top: 5px;
+            padding-inline: 5px;
+
+            .delimeter {
+                width: calc(100% - 20px);
+                height: 1px;
+                background-color: var(--mu-blue-color);
+            }
+
+            .arrow {
+                position: relative;
+                width: 10px;
+                height: 10px;
+                rotate: 45deg;
+
+                .line1 {
+                    width: 8px;
+                    height: 1px;
+                    background-color: var(--mu-blue-color);
+                    position: absolute;
+                    top: 7px;
+                }
+
+                .line2 {
+                    width: 1px;
+                    height: 8px;
+                    background-color: var(--mu-blue-color);
+                    position: absolute;
+                    left: 7px;
+                }
+            }
+        }
+
+        .checkboxes {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 5px;
+            margin-top: 10px;
+            overflow: hidden;
+            transition: height 0.5s ease-in-out;
+
+            .drop-button {
+                display: block;
+                background-color: var(--mu-blue-color);
+                grid-column-start: 2;
+                grid-row-start: 1;
+                grid-row-end: 2;
+            }
+
+            .checkbox-unit {
+                font-size: 14px;
+            }
+        }
+
+        .checkboxes-school,
+        .checkboxes-direction {
+            height: 0;
+        }
+
+        &:hover .checkboxes-school {
+            height: 155px;
+        }
+
+        &:hover .checkboxes-direction {
+            height: 139px;
+        }
+    }
+    
 }

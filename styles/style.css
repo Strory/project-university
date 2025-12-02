@@ -52,53 +52,113 @@ button {
   align-items: center;
   border-bottom: 2px solid rgba(74, 74, 74, 0.1490196078);
 }
-.header .header-right-content .my-achievements {
-  cursor: pointer;
+.header .header-left-content a {
+  display: block;
 }
-.header .achieve-type-list {
+.header .header-left-content a img {
+  display: block;
+  width: 150px;
+}
+.header .header-right-content {
+  height: inherit;
+  display: flex;
+  align-items: center;
+}
+.header .header-right-content .main-button,
+.header .header-right-content .my-achievements,
+.header .header-right-content .check-achievements-button {
+  color: var(--mu-blue-color);
+  font-size: 20px;
+  font-weight: 600;
+}
+.header .header-right-content .main-button,
+.header .header-right-content .my-achievements,
+.header .header-right-content .fio-button,
+.header .header-right-content .out-button,
+.header .header-right-content .check-achievements-button {
+  cursor: pointer;
+  height: 30px;
+}
+.header .header-right-content .main-button:not(:nth-last-child(-n+2)),
+.header .header-right-content .my-achievements:not(:nth-last-child(-n+2)),
+.header .header-right-content .fio-button:not(:nth-last-child(-n+2)),
+.header .header-right-content .out-button:not(:nth-last-child(-n+2)),
+.header .header-right-content .check-achievements-button:not(:nth-last-child(-n+2)) {
+  margin-right: 30px;
+}
+.header .header-right-content .main-button:hover,
+.header .header-right-content .my-achievements:hover,
+.header .header-right-content .check-achievements-button:hover {
+  color: var(--blue-font-color);
+}
+.header .header-right-content .my-achievements {
+  position: relative;
+}
+.header .header-right-content .my-achievements .achieve-type-list {
   position: absolute;
   top: var(--height);
-  right: 0;
+  left: 0;
+  top: 53px;
   list-style: none;
   padding: 0;
   background-color: #fff;
   font-weight: 600;
   box-shadow: 0 2px 2px 1px rgba(74, 74, 74, 0.2);
   font-size: 20px;
+  width: -moz-fit-content;
+  width: fit-content;
 }
-.header .achieve-type-list li {
+.header .header-right-content .my-achievements .achieve-type-list li {
   height: 50px;
   line-height: 50px;
 }
-.header .achieve-type-list li a {
+.header .header-right-content .my-achievements .achieve-type-list li a {
   display: block;
   height: inherit;
   padding-inline: 10px;
   text-decoration: none;
   color: var(--mu-blue-color);
+  white-space: nowrap;
+  text-align: left;
 }
-.header .achieve-type-list li a:hover {
+.header .header-right-content .my-achievements .achieve-type-list li a:hover {
   background-color: var(--mu-grey-color);
 }
+.header .header-right-content .fio-button {
+  color: #d1d5d6;
+  font-size: 20px;
+  font-weight: 600;
+}
+.header .header-right-content .out-button {
+  width: 30px;
+  height: 30px;
+  position: relative;
+  top: -4px;
+}
+.header .header-right-content .out-button img {
+  width: inherit;
+  height: inherit;
+  display: block;
+}
 
-main {
+.main {
   width: 76%;
   margin: 50px auto 20px;
 }
-main h1 {
+.main h1 {
   margin: 0;
   font-size: 45px;
   color: #000;
   font-family: sans-serif;
 }
-main .content {
+.main .content {
   --side-padding: 20px;
   margin-top: 40px;
   background-color: #fff;
   box-shadow: 0 3px 20px rgba(74, 74, 74, 0.2509803922);
   padding-bottom: 10px;
 }
-main .content .achievements-toggle-bar {
+.main .content .achievements-toggle-bar {
   --height: 60px;
   display: flex;
   justify-content: space-between;
@@ -106,7 +166,7 @@ main .content .achievements-toggle-bar {
   font-size: 20px;
   color: #39454b;
 }
-main .content .achievements-toggle-bar div {
+.main .content .achievements-toggle-bar div {
   height: inherit;
   line-height: var(--height);
   width: 50%;
@@ -114,10 +174,10 @@ main .content .achievements-toggle-bar div {
   background-color: var(--mu-grey-color);
   cursor: pointer;
 }
-main .content .achievements-toggle-bar .active {
+.main .content .achievements-toggle-bar .active {
   background-color: inherit;
 }
-main .content .achievements-search-bar {
+.main .content .achievements-search-bar {
   display: flex;
   gap: 10px;
   width: calc(100% - 40px);
@@ -126,7 +186,7 @@ main .content .achievements-search-bar {
   margin-right: 20px;
   margin-top: 20px;
 }
-main .content .achievements-search-bar .achieve-title {
+.main .content .achievements-search-bar .achieve-title {
   outline: none;
   border: none;
   height: 40px;
@@ -137,7 +197,7 @@ main .content .achievements-search-bar .achieve-title {
   box-sizing: content-box;
   text-align: center;
 }
-main .content .achievements-search-bar .add-achieve {
+.main .content .achievements-search-bar .add-achieve {
   border: none;
   width: 39%;
   background-color: var(--mu-blue-color);
@@ -149,48 +209,66 @@ main .content .achievements-search-bar .add-achieve {
   font-weight: 500;
   cursor: pointer;
 }
-main .content .achievements-search-bar .refresh-button {
+.main .content .achievements-search-bar .add-achieve:hover {
+  background-color: var(--blue-font-color);
+}
+.main .content .current-achievements-bar .current-achievements-bar-achieve-title {
+  width: 59%;
+}
+.main .content .refresh-button {
   border: none;
   height: 60px;
   width: 60px;
+  padding: 0;
   border-radius: 10px;
   background-color: var(--mu-blue-color);
   cursor: pointer;
+  color: #fff;
 }
-main .content .current-achievements-bar .current-achievements-bar-achieve-title {
-  width: 59%;
+.main .content .refresh-button:hover {
+  background-color: var(--blue-font-color);
 }
-main .content .archived-achievements-bar .archived-achievements-bar-achieve-title {
+.main .content .refresh-button svg {
+  width: 60px;
+  height: 60px;
+}
+.main .content .refresh-button .load-animation {
+  animation-name: load-animation;
+  animation-duration: 3s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+.main .content .archived-achievements-bar .archived-achievements-bar-achieve-title {
   width: 100%;
 }
-main .content .table {
+.main .content .table {
   margin-left: 20px;
   margin-right: 20px;
   margin-top: 20px;
 }
-main .content .table .empty-text,
-main .content .table .load-text {
+.main .content .table .empty-text,
+.main .content .table .load-text {
   text-align: center;
   font-size: 24px;
   margin: 0;
   padding-top: 20px;
   padding-bottom: 20px;
 }
-main .content .table table {
+.main .content .table table {
   width: 100%;
 }
-main .content .table table th {
+.main .content .table table th {
   background-color: var(--mu-blue-color);
   padding: 10px;
   font-weight: 400;
   color: #fff;
 }
-main .content .table table td {
+.main .content .table table td {
   background-color: var(--mu-grey-color);
   text-align: center;
   padding: 10px;
 }
-main .filters {
+.main .filters {
   padding-left: var(--side-padding);
   padding-right: var(--side-padding);
   display: flex;
@@ -199,7 +277,7 @@ main .filters {
        column-gap: 10px;
   margin-top: 20px;
 }
-main .filters input {
+.main .filters input {
   border: none;
   background: none;
   display: block;
@@ -209,7 +287,7 @@ main .filters input {
   width: 22%;
   height: 30px;
 }
-main .filters button {
+.main .filters button {
   border: none;
   background: none;
   display: block;
@@ -219,7 +297,7 @@ main .filters button {
   width: 12%;
   height: 30px;
 }
-main #modal-overlay {
+.main #modal-overlay {
   display: none;
   position: fixed;
   top: 0;
@@ -229,14 +307,14 @@ main #modal-overlay {
   background-color: rgba(0, 0, 0, 0.6);
   z-index: 10;
 }
-main #modal-overlay .modal-wrapper {
+.main #modal-overlay .modal-wrapper {
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-main #modal-overlay #modal-box {
+.main #modal-overlay #modal-box {
   background-color: #fff;
   padding: 20px;
   width: -moz-fit-content;
@@ -246,11 +324,11 @@ main #modal-overlay #modal-box {
   position: relative;
   z-index: 11;
 }
-main #modal-overlay #modal-box h2 {
+.main #modal-overlay #modal-box h2 {
   text-align: center;
   font-size: 26px;
 }
-main #modal-overlay #modal-box button {
+.main #modal-overlay #modal-box button {
   display: block;
   width: 300px;
   height: 50px;
@@ -260,17 +338,28 @@ main #modal-overlay #modal-box button {
   color: #000;
   cursor: pointer;
 }
-main #modal-overlay #modal-box button:hover {
+.main #modal-overlay #modal-box button:hover {
   color: #fff;
   background-color: var(--mu-blue-color);
 }
-main #modal-overlay #modal-box button:not(:last-child) {
+.main #modal-overlay #modal-box button:not(:last-child) {
   margin-bottom: 10px;
 }
-main .display-block {
+.main .display-block {
   display: block !important;
 }
 
+@keyframes load-animation {
+  0% {
+    rotate: 0deg;
+  }
+  50% {
+    rotate: 180deg;
+  }
+  100% {
+    rotate: 360deg;
+  }
+}
 .achievement-completion-card-and-reset-button {
   margin-top: 20px;
   margin-inline: auto;
@@ -316,6 +405,17 @@ main .display-block {
   display: block;
   padding: 10px;
 }
+.achievement-completion-card-and-reset-button .achievement-completion-card .form-element .textarea-wrap {
+  display: block;
+}
+.achievement-completion-card-and-reset-button .achievement-completion-card .form-element .textarea-wrap .textarea-line-element {
+  width: 100%;
+  background-color: #f6f6f6;
+  border: 1px solid #777;
+  border-radius: 2px;
+  display: block;
+  padding: 10px;
+}
 .achievement-completion-card-and-reset-button .achievement-completion-card .form-element .radio-margin:not(:last-child) {
   margin-bottom: 10px;
 }
@@ -328,10 +428,105 @@ main .display-block {
   height: 45px;
   width: 100%;
   padding: 10px;
+  cursor: pointer;
+}
+.achievement-completion-card-and-reset-button .achievement-completion-card .submit:hover {
+  background-color: var(--blue-font-color);
 }
 .achievement-completion-card-and-reset-button .reset-button-wrap {
   grid-column: 3;
   width: 50px;
   height: 50px;
   background-color: var(--mu-blue-color);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.achievement-completion-card-and-reset-button .reset-button-wrap:hover {
+  background-color: var(--blue-font-color);
+}
+.achievement-completion-card-and-reset-button .reset-button-wrap img {
+  width: 40px;
+  height: 40px;
+  display: block;
+}
+
+.verificator-main .school-filter-wrap {
+  width: 59%;
+}
+.verificator-main .school-filter-wrap .school-input-verificator {
+  outline: none;
+  border: none;
+  display: block;
+  width: calc(100% - 20px);
+  height: 20px;
+  padding: 10px;
+  border-radius: 10px;
+  color: #0d0d0d;
+  background-color: var(--mu-grey-color);
+  box-sizing: content-box;
+  text-align: center;
+}
+.verificator-main .school-filter-wrap .delimeter-arrow {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  margin-top: 5px;
+  padding-inline: 5px;
+}
+.verificator-main .school-filter-wrap .delimeter-arrow .delimeter {
+  width: calc(100% - 20px);
+  height: 1px;
+  background-color: var(--mu-blue-color);
+}
+.verificator-main .school-filter-wrap .delimeter-arrow .arrow {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  rotate: 45deg;
+}
+.verificator-main .school-filter-wrap .delimeter-arrow .arrow .line1 {
+  width: 8px;
+  height: 1px;
+  background-color: var(--mu-blue-color);
+  position: absolute;
+  top: 7px;
+}
+.verificator-main .school-filter-wrap .delimeter-arrow .arrow .line2 {
+  width: 1px;
+  height: 8px;
+  background-color: var(--mu-blue-color);
+  position: absolute;
+  left: 7px;
+}
+.verificator-main .school-filter-wrap .checkboxes {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 5px;
+  margin-top: 10px;
+  overflow: hidden;
+  transition: height 0.5s ease-in-out;
+}
+.verificator-main .school-filter-wrap .checkboxes .drop-button {
+  display: block;
+  background-color: var(--mu-blue-color);
+  grid-column-start: 2;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+.verificator-main .school-filter-wrap .checkboxes .checkbox-unit {
+  font-size: 14px;
+}
+.verificator-main .school-filter-wrap .checkboxes-school,
+.verificator-main .school-filter-wrap .checkboxes-direction {
+  height: 0;
+}
+.verificator-main .school-filter-wrap:hover .checkboxes-school {
+  height: 155px;
+}
+.verificator-main .school-filter-wrap:hover .checkboxes-direction {
+  height: 139px;
 }/*# sourceMappingURL=style.css.map */
