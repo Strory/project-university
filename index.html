@@ -13,22 +13,29 @@
         <a class="top-bar-link" href="#">www.dvfu.ru</a>
         <a class="top-bar-link" href="#">ЕДИНЫЙ КОНТАКТНЫЙ ЦЕНТР</a>
     </div>
-    <header class="header display-none">
+
+    <!-- Как войти? -->
+    <div id="gateway">
+        <button id="verificator-entrance">Войти как верификотор</button>
+        <button id="student-entrance">Войти как студент</button>
+    </div>
+
+    <header class="header">
         <div class="header-left-content">
             <a href="#">
                 <img src="images/logo.svg" alt="logo" class="logo">
             </a>
         </div>
         <div class="header-right-content">
-            <button class="main-button">Главная</button>
+            <button data-category="all" id="main-button" class="main-button">Главная</button>
             <button id="my-achievements-btn" class="my-achievements">
                 Мои достижения
                 <div id="my-achievements-list" class="achieve-type-list display-none">
-                    <li><a href="#">Спортивная деятельность</a></li>
-                    <li><a href="#">Научная деятельность</a></li>
-                    <li><a href="#">Творческая деятельность</a></li>
-                    <li><a href="#">Общественная деятельность</a></li>
-                    <li><a href="#">Учебная деятельность</a></li>
+                    <li><a data-category="sport" id="main-sport-link" href="#">Спортивная деятельность</a></li>
+                    <li><a data-category="science" id="main-science-link" href="#">Научная деятельность</a></li>
+                    <li><a data-category="art" id="main-creation-link" href="#">Творческая деятельность</a></li>
+                    <li><a data-category="com" id="main-society-link" href="#">Общественная деятельность</a></li>
+                    <li><a data-category="study" id="main-educational-link" href="#">Учебная деятельность</a></li>
                 </div>
             </button>
             <button class="fio-button">Фамилия И. О.</button>
@@ -38,23 +45,22 @@
         </div>
     </header>
 
-
     <!-- Главная для студента -->
     <main id="main-card" class="main">
-        <h1>Все достижения</h1>
+        <h1 id="achievements-category">Все достижения</h1>
         <div class="content">
             <div class="achievements-toggle-bar">
-                <div id="current-achievements-btn" class="current-achievements active">
+                <div data-view="current" id="current-achievements-btn" class="current-achievements active">
                     Текущие достижения
                 </div>
-                <div id="archived-achievements-btn" class="archived-achievements">
+                <div data-view="old" id="archived-achievements-btn" class="archived-achievements">
                     Архивные достижения
                 </div>
             </div>
             <div id="current-achievements-bar" class="current-achievements-bar achievements-search-bar">
                 <input placeholder="Название достижения" type="text"
                     class="achieve-title current-achievements-bar-achieve-title">
-                <button class="add-achieve">
+                <button id="add-achieve-button" class="add-achieve">
                     Добавить достижение
                 </button>
                 <button class="refresh-button">
@@ -116,11 +122,11 @@
             <div class="modal-wrapper">
                 <div id="modal-box">
                     <h2>Вид достижения </h2>
-                    <button>Спортивная деятельность</button>
-                    <button>Научная деятельность</button>
-                    <button>Творческая деятельность</button>
-                    <button>Общественная деятельность</button>
-                    <button>Учебная деятельность</button>
+                    <button data-form="sport" id="sport-button" >Спортивная деятельность</button>
+                    <button data-form="science" id="science-button">Научная деятельность</button>
+                    <button data-form="art" id="creation-button">Творческая деятельность</button>
+                    <button data-form="com" id="society-button">Общественная деятельность</button>
+                    <button data-form="study" id="educational-button">Учебная деятельность</button>
                 </div>
             </div>
         </div>
@@ -357,7 +363,7 @@
             <div class="achievement-completion-card">
                 <form id="check-form" class="form">
                     <!-- Элементы формы -->
-                    <div id="toggle-form" class="form-element">
+                    <div id="toggle-form-verificator" class="form-element">
                         <label class="form-title">Тип спортивного достижения</label>
                         <label class="input-wrap radio-margin">
                             <input type="radio" name="achieve-type" value="achieve-value"> Знак отличия ВФСК ГТО
@@ -370,7 +376,7 @@
                         </label>
                     </div>
 
-                    <div id="form-container" class="toggle-form">
+                    <div id="form-container-verificator" class="toggle-form">
                         <div class="form-element">
                             <label class="form-title">Тип спортивного достижения</label>
                             <label class="input-wrap">
@@ -419,6 +425,7 @@
             </div>
         </div>
     </div>
-</body>
 
+    <script defer src="dima.js"></script>
+</body>
 </html>
