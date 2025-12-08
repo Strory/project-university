@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="/styles/style2.css">
 </head>
 
 <body>
@@ -116,11 +117,11 @@
             <div class="modal-wrapper">
                 <div id="modal-box">
                     <h2>Вид достижения </h2>
-                    <button data-form="sport" id="sport-button" >Спортивная деятельность</button>
-                    <button data-form="science" id="science-button">Научная деятельность</button>
-                    <button data-form="art" id="creation-button">Творческая деятельность</button>
-                    <button data-form="com" id="society-button">Общественная деятельность</button>
-                    <button data-form="study" id="educational-button">Учебная деятельность</button>
+                    <button data-form="sport" id="sport-button" class="achieve-btn" data-activity="sport">Спортивная деятельность</button>
+                    <button data-form="science" id="science-button" class="achieve-btn" data-activity="science">Научная деятельность</button>
+                    <button data-form="art" id="creation-button" class="achieve-btn" data-activity="art">Творческая деятельность</button>
+                    <button data-form="com" id="society-button" class="achieve-btn" data-activity="social">Общественная деятельность</button>
+                    <button data-form="study" id="educational-button" class="achieve-btn" data-activity="study">Учебная деятельность</button>
                 </div>
             </div>
         </div>
@@ -421,5 +422,6 @@
     </div>
 
     <script defer src="dima.js"></script>
+    <script defer type="module" src="renderer.js"></script>
 </body>
 </html>
