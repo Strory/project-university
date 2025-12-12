@@ -6,7 +6,11 @@
 //странички
 var pagesObject = {
     mainStudent: document.getElementById('main-card'),
-    mainForm: document.getElementById('main-form')
+    mainForm: document.getElementById('main-form'),
+    verificator: document.getElementById('verificator-main'),
+    checkCard: document.getElementById('verificator-check-card'),
+    main: document.getElementById('entrance'),
+    header: document.getElementById('main-header')
 }
 
 // хедер раздела (меняется при смене раздела достижений)
@@ -44,11 +48,17 @@ var links = {
     scienceButton: document.getElementById('science-button'),
     artButton: document.getElementById('creation-button'),
     comButton: document.getElementById('society-button'),
-    studyButton: document.getElementById('educational-button')
+    studyButton: document.getElementById('educational-button'),
+
+    studentButton: document.getElementById('entrance-student-link'),
+    verificatorButton: document.getElementById('entrance-verificator-link')
 }
 
 // модалка
 var modalWindow = document.getElementById('modal-overlay');
+
+// список кнопок категорий
+var listCategories = document.getElementById('my-achievements-list')
 
 // контейнеры формы
 var formContainers = {
@@ -95,8 +105,21 @@ document.addEventListener('keydown', function(event) {
     }
 });
 
+modalWindow.addEventListener('click', function(event) {
+    const modalBox = document.getElementById('modal-box')
+    if (event.target !== modalBox) {
+        modalWindow.classList.remove('display-block');
+    }
+});
+
+document.addEventListener('click', function(event) {
+    if (event.target !== listCategories && event.target !== listBtn) {
+        listCategories.classList.add('display-none');
+    }
+});
+
 listBtn.addEventListener('click', function(event) {
-    var list = document.getElementById('my-achievements-list').classList
+    var list = listCategories.classList
     if (list.contains('display-none')) {
         list.remove('display-none')
     }
@@ -195,7 +218,7 @@ function updateActiveView(activeView) {
 function showCategoryData(category, view) {
     // отображение того или иного раздела 
     console.log(`Loading ${view} data for ${category} category`);
-    
+    pagesObject.header.classList.remove('display-none');
     if (view === 'current') {
         switchToCurrentView();
     } else {
@@ -204,38 +227,91 @@ function showCategoryData(category, view) {
 }
 
 // роуты
-const routes = {
-    '/achievement/all': () => showCurrentView('all'),
-    '/achievement/sport': () => showCurrentView('sport'),
-    '/achievement/science': () => showCurrentView('science'),
-    '/achievement/art': () => showCurrentView('art'),
-    '/achievement/com': () => showCurrentView('com'),
-    '/achievement/study': () => showCurrentView('study'),
+// const routes = {
+//     '/achievement/all': () => showCurrentView('all'),
+//     '/achievement/sport': () => showCurrentView('sport'),
+//     '/achievement/science': () => showCurrentView('science'),
+//     '/achievement/art': () => showCurrentView('art'),
+//     '/achievement/com': () => showCurrentView('com'),
+//     '/achievement/study': () => showCurrentView('study'),
 
-    '/achievement/all/old': () => showArchiveView('all'),
-    '/achievement/sport/old': () => showArchiveView('sport'),
-    '/achievement/science/old': () => showArchiveView('science'),
-    '/achievement/art/old': () => showArchiveView('art'),
-    '/achievement/com/old': () => showArchiveView('com'),
-    '/achievement/study/old': () => showArchiveView('study'),
+//     '/achievement/all/old': () => showArchiveView('all'),
+//     '/achievement/sport/old': () => showArchiveView('sport'),
+//     '/achievement/science/old': () => showArchiveView('science'),
+//     '/achievement/art/old': () => showArchiveView('art'),
+//     '/achievement/com/old': () => showArchiveView('com'),
+//     '/achievement/study/old': () => showArchiveView('study'),
 
-    '/achievement/sport/form': () => showFormView('sport'),
-    '/achievement/science/form': () => showFormView('science'),
-    '/achievement/art/form': () => showFormView('art'),
-    '/achievement/com/form': () => showFormView('com'),
-    '/achievement/study/form': () => showFormView('study')
-};
+//     '/achievement/sport/form': () => showFormView('sport'),
+//     '/achievement/science/form': () => showFormView('science'),
+//     '/achievement/art/form': () => showFormView('art'),
+//     '/achievement/com/form': () => showFormView('com'),
+//     '/achievement/study/form': () => showFormView('study')
+// };
 
+const routes = [
+    { path: '/', action: () => showEntrancePage() },
+
+    { path: '/achievement/all', action: () => showCurrentView('all') },
+    { path: '/achievement/sport', action: () => showCurrentView('sport') },
+    { path: '/achievement/science', action: () => showCurrentView('science') },
+    { path: '/achievement/art', action: () => showCurrentView('art') },
+    { path: '/achievement/com', action: () => showCurrentView('com') },
+    { path: '/achievement/study', action: () => showCurrentView('study') },
+
+    { path: '/achievement/all/old', action: () => showArchiveView('all') },
+    { path: '/achievement/sport/old', action: () => showArchiveView('sport') },
+    { path: '/achievement/science/old', action: () => showArchiveView('science') },
+    { path: '/achievement/art/old', action: () => showArchiveView('art') },
+    { path: '/achievement/com/old', action: () => showArchiveView('com') },
+    { path: '/achievement/study/old', action: () => showArchiveView('study') },
+
+    { path: '/achievement/sport/form', action: () => showFormView('sport') },
+    { path: '/achievement/science/form', action: () => showFormView('science') },
+    { path: '/achievement/art/form', action: () => showFormView('art') },
+    { path: '/achievement/com/form', action: () => showFormView('com') },
+    { path: '/achievement/study/form', action: () => showFormView('study') },
+
+    { path: '/verificator', action: () => showVerificatorPage() },
+
+    // ⭐ динамический роут: /details/ID
+    { path: /^\/verificator\/details\/(\d+)$/, action: showDetailsPage }
+];
 
 // Обработчик маршрута
 function handleRoute() {
-    let path = window.location.pathname;
+    // let path = window.location.pathname;
     
-    console.log('Router: current path', path);
+    // console.log('Router: current path', path);
 
-    if (routes[path]) {
-        routes[path]();
-    } 
+    // if (routes[path]) {
+    //     routes[path]();
+    // } 
+    const BASE_PATH = "/project-university-main/index.html";
+    let current = window.location.pathname;
+    if (current.startsWith(BASE_PATH)) {
+        current = current.replace(BASE_PATH, "/");
+        history.replaceState({}, "", `/`);
+    }
+
+        for (const route of routes) {
+            if (route.path instanceof RegExp) {
+                const match = current.match(route.path);
+                if (match) {
+                    route.action(match[2]); // id передаем в функцию
+                    return;
+                }
+            }
+
+            if (route.path === current) {
+                route.action();
+                return;
+            }
+        }
+
+        console.warn("No route match:", current);
+
+
     // else {                                                                               // вообще это валидация, но в целом в нашем случае необходимости в ней нет?
     //     // Пробуем найти подходящий маршрут
     //     const parts = path.split('/').filter(p => p);
@@ -323,12 +399,19 @@ function initRouter() {
     });
     
     // Обрабатываем начальный маршрут
-    setTimeout(handleRoute, 0);
+    handleRoute();
 }
 
 // Инициализация при загрузке
 document.addEventListener('DOMContentLoaded', () => {
     initRouter();
+    renderTable();
+    links.studentButton.addEventListener("click", function(event){
+    navigateTo('/achievement/all')
+});
+links.verificatorButton.addEventListener("click", function(event){
+    navigateTo('/verificator')
+});
 });
 
 function switchToCurrentView() {
@@ -341,6 +424,9 @@ function switchToCurrentView() {
     pageBars.archive.classList.add('display-none');
 
     pagesObject.mainForm.classList.add('display-none');
+    pagesObject.main.classList.add('display-none');
+    pagesObject.verificator.classList.add('display-none');
+    pagesObject.checkCard.classList.add('display-none');
     pagesObject.mainStudent.classList.remove('display-none');
 
     loadCategoryData(appState.currentCategory, false);
@@ -356,6 +442,9 @@ function switchToArchiveView() {
     pageBars.archive.classList.remove('display-none');
 
     pagesObject.mainForm.classList.add('display-none');
+    pagesObject.main.classList.add('display-none');
+    pagesObject.verificator.classList.add('display-none');
+    pagesObject.checkCard.classList.add('display-none');
     pagesObject.mainStudent.classList.remove('display-none');
     
     loadCategoryData(appState.currentCategory, true);
@@ -393,3 +482,87 @@ function showFormContent() {
 function setupFormForCategory(category) {
     
 }
+
+
+// заполнение таблицы верификатора
+
+const records = [
+    { id: 27554,
+        name: "Всеросийский конкурс молодых препринимателей \"Амур 25\"", 
+        fio: 'ФИО', 
+        school: 'Политехнический институт (Школа)', 
+        studyDirection: 'длинной длинное направление обучения', 
+        status: 'Отправлено на проверку', 
+        icon: "иконка" },
+    { id: 27555, 
+        name: "Hakaton",
+        fio: 'ФИО', 
+        school: 'Политехнический институт (Школа)', 
+        studyDirection: 'длинной длинное направление обучения', 
+        status: 'Отправлено на проверку', 
+        icon: "иконка" },
+];
+
+function renderTable() {
+    const table = document.getElementById("data-table-verificator");
+
+    const header = `<tr>
+                            <th>ID</th>
+                            <th>Название</th>
+                            <th>ФИО</th>
+                            <th>Школа</th>
+                            <th>Направление обучения</th>
+                            <th>Статус</th>
+                            <th></th>
+                        </tr>`;
+
+    const rows = records.map(rec => `
+        <tr>
+            <td>${rec.id}</td>
+            <td>${rec.name}</td>
+            <td>${rec.fio}</td>
+            <td>${rec.school}</td>
+            <td>${rec.studyDirection}</td>
+            <td>${rec.status}</td>
+            <td>
+                <button class="details-btn" data-id="${rec.id}">🔗</button>
+            </td>
+        </tr>
+    `).join('');
+
+    table.innerHTML = header + rows;
+}
+
+document.getElementById("data-table-verificator").addEventListener("click", function(event){
+    if(event.target.classList.contains("details-btn")){
+        const id = event.target.dataset.id;
+        openDetails(id);
+    }
+});
+
+function openDetails(id) {
+    navigateTo(`/verificator/details/${id}`)
+}
+
+function showDetailsPage(id) {
+    pagesObject.verificator.classList.add('display-none')
+    pagesObject.checkCard.classList.remove('display-none')
+}
+
+function showVerificatorPage() {
+    pagesObject.verificator.classList.remove('display-none')
+    pagesObject.checkCard.classList.add('display-none')
+    pagesObject.mainForm.classList.add('display-none')
+    pagesObject.mainStudent.classList.add('display-none')
+    pagesObject.main.classList.add('display-none')
+}
+
+function showEntrancePage() {
+    pagesObject.verificator.classList.add('display-none')
+    pagesObject.checkCard.classList.add('display-none')
+    pagesObject.mainForm.classList.add('display-none')
+    pagesObject.mainStudent.classList.add('display-none')
+    pagesObject.main.classList.remove('display-none')
+    pagesObject.header.classList.add('display-none')
+}
+
